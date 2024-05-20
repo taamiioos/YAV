@@ -1,0 +1,22 @@
+@font-face {
+    font-family: "South";   
+    src: local("South"),
+      url("./../fonts/South.woff") format("truetype");
+  }
+
+:root {
+	/* Colors */
+	--main-bg-color:#F3F1EA;
+	--red-03: #A80B00;
+	--black-03: #202020;
+  --white-03: #FDFDFD;
+}
+
+html,
+body {
+  background-color: var(--main-bg-color);
+}
+
+
+
+
