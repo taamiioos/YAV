@@ -117,3 +117,5 @@ export const EyeIcon = styled('div')`
 
 
 export { globalStyles };
+
+//git git config
