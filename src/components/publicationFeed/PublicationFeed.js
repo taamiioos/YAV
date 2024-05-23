@@ -35,14 +35,12 @@ const PublicationFeed = () => {
     }, []);
 
     const handleAddPublication = (publication) => {
-        const updatedPublications = [...publications, publication];
+        const updatedPublications = [publication, ...publications];
         setPublications(updatedPublications);
         localStorage.setItem('publications', JSON.stringify(updatedPublications));
     };
 
-    const handleAddComment = (comment) => {
-        console.log(comment);
-    };
+
 
     return (
         <Container>

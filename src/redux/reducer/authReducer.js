@@ -1,3 +1,4 @@
+import { REGISTER_USER } from '../actions/authActions';
 import axios from "axios";
 
 const initialState = {
@@ -7,9 +8,9 @@ const initialState = {
 
 const authReducer = async (state = initialState, action) => {
     switch (action.type) {
-        case 'REGISTER_USER':
+        case REGISTER_USER:
             try {
-                const response = await axios.post('http://127.0.0.1:8000/api/reg', action.payload);
+                const response = await axios.post('/api/auth/register', action.payload);
                 if (response.data.status === true) {
                     return {
                         ...state,
@@ -34,4 +35,5 @@ const authReducer = async (state = initialState, action) => {
             return state;
     }
 };
+
 export default authReducer;

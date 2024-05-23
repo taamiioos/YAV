@@ -13,7 +13,7 @@ function App() {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<LoginPage />} />
-                <Route path="/" element={<ClusterPage />} />
+                <Route path="/сlusterPage" element={<ClusterPage />} />
                 <Route path="/registerPage" element={<RegisterPage />} />
                 <Route path="/clusterPage" element={<ClusterPage />} />
                 <Route path="/eventsPage" element={<Events />} />
