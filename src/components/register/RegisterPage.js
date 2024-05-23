@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { useDispatch } from 'react-redux';
+import { register } from '../../redux/actions/authActions';
 
 const RegisterPage = () => {
   const [email, setEmail] = useState('');
@@ -10,6 +12,7 @@ const RegisterPage = () => {
   const [emailError, setEmailError] = useState('');
   const [usernameError, setUsernameError] = useState('');
   const [passwordError, setPasswordError] = useState('');
+  const dispatch = useDispatch();
 
   const availableClusters = [
     'Кино', 'Театр', 'Музыка', 'Фотография', 'Арт',
@@ -58,12 +61,7 @@ const RegisterPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!emailError && !usernameError && !passwordError && email && username && password) {
-      console.log({
-        email,
-        username,
-        password,
-        clusters,
-      });
+      dispatch(register(username, password, email));
     } else {
       console.error('Пожалуйста, заполните все поля корректно.');
     }

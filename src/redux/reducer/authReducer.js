@@ -1,36 +1,37 @@
-import { REGISTER_USER } from '../actions/authActions';
-import axios from "axios";
+import {
+    REGISTER_USER_REQUEST,
+    REGISTER_USER_SUCCESS,
+    REGISTER_USER_FAILURE,
+} from '../actions/authActions';
 
 const initialState = {
     isAuthenticated: false,
     error: null,
+    loading: false,
 };
 
-const authReducer = async (state = initialState, action) => {
+const authReducer = (state = initialState, action) => {
     switch (action.type) {
-        case REGISTER_USER:
-            try {
-                const response = await axios.post('/api/auth/register', action.payload);
-                if (response.data.status === true) {
-                    return {
-                        ...state,
-                        isAuthenticated: true,
-                        error: null,
-                    };
-                } else {
-                    return {
-                        ...state,
-                        isAuthenticated: false,
-                        error: response.data.error,
-                    };
-                }
-            } catch (error) {
-                return {
-                    ...state,
-                    isAuthenticated: false,
-                    error: error.message,
-                };
-            }
+        case REGISTER_USER_REQUEST:
+            return {
+                ...state,
+                loading: true,
+                error: null,
+            };
+        case REGISTER_USER_SUCCESS:
+            return {
+                ...state,
+                isAuthenticated: true,
+                loading: false,
+                error: null,
+            };
+        case REGISTER_USER_FAILURE:
+            return {
+                ...state,
+                isAuthenticated: false,
+                loading: false,
+                error: action.payload,
+            };
         default:
             return state;
     }
