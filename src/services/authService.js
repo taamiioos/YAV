@@ -1,0 +1,37 @@
+import axios from 'axios';
+
+
+
+
+export function useAuth() {
+    const dispatch = useDispatch();
+    const register = async (email, nickname, password) => {
+        try {
+            const response = await axios.post('/api/register', { email, nickname, password });
+            if (response.data.status === true) {
+                history.push('/cluster-page');
+            } else {
+                console.error('Ошибка регистрации:', response.data.error);
+            }
+        } catch (error) {
+            console.error('Ошибка:', error);
+        }
+    };
+
+    const login = async (email, password) => {
+        try {
+            const response = await axios.post('/api/auth', { username: email, password: password });
+            if (response.data.status === true) {
+            } else {
+
+            }
+        } catch (error) {
+            console.error('Ошибка:', error);
+        }
+    };
+
+    return {
+        register,
+        login,
+    };
+}
