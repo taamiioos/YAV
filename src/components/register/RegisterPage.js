@@ -12,7 +12,7 @@ import {
   RegBlock,
   Registration,
   ButtonStyled,
-  QuestionBlock
+  QuestionBlock, FooterBlock
 } from "./RegisterPageStyles";
 import {fontFamily} from "@mui/system";
 
@@ -167,6 +167,7 @@ const RegisterPage = () => {
 
       </RegBlock>
       </BackgroundContainer>
+        <FooterBlock />
       </BackgroundBlock>
   );
 };

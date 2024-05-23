@@ -77,9 +77,18 @@ display: flex;
 `
 export const QuestionBlock = styled('div')`
   font-family: 'Helvetica', serif;
+  margin-bottom: 4%;
 `
 
-
+export const FooterBlock = styled('div')`
+  width: 100%;
+  height: 300px;
+  background-color: #202020;
+  position: absolute;
+  bottom: -30%;
+  left: 0;
+  z-index: 0;
+`;
 
 //style={{ marginBottom: '20px', position: 'relative', display: 'inline-block' }}
 
