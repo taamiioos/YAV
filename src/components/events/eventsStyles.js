@@ -73,15 +73,6 @@ export const TicketsButton = styled('button')`
   margin-top: 45%;
 `;
 
-export const ButtonText = styled('span')`
-  font-family: 'Helvetica', serif;
-  font-style: italic;
-  font-weight: 850;
-  font-size: 1.125rem;
-  color: var(--red-03);
-  
-`;
-
 export const TicketsLeftContainer = styled('div')`
   color: var(--black-03);
   font-family: 'Helvetica',serif;
@@ -91,10 +82,6 @@ export const TicketsLeftContainer = styled('div')`
   align-items: center;
   column-gap: 1%;
   justify-content: flex-end;
-`;
-
-export const TicketsLeftText = styled('p')`
-  font-weight: 800;
 `;
 
 export const NavLink = styled(Link)`
