@@ -108,7 +108,7 @@ color: #A80B00;
   text-decoration: none;
 `
 export const EyeIcon = styled('div')`
-  position: absolute;
+  //position: absolute;
   //right: 15px;
   top: 50%;
   transform: translateY(-50%);
@@ -117,5 +117,3 @@ export const EyeIcon = styled('div')`
 
 
 export { globalStyles };
-
-//git git config
