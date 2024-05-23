@@ -1,5 +1,5 @@
-import {useState} from "react";
-import {useEffect} from "react";
+import { useState } from "react";
+import { useEffect } from "react";
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import {
     BackgroundContainer,
@@ -11,10 +11,11 @@ import {
     EntryButton,
     QuestionBlock,
     RegLink,
-    EyeIcon
+    EyeIcon, InputContainer, InputField
 } from "./loginPageStyles";
-import {Link} from "react-router-dom";
-
+import { Link } from "react-router-dom";
+import { styled } from '@mui/system';
+import {Error} from "../register/RegisterPageStyles";
 
 const LoginPage = () => {
     const [email, setEmail] = useState('');
@@ -35,12 +36,8 @@ const LoginPage = () => {
     }, [emailError, passwordError]);
 
     const emailHandler = (e) => {
-
-        //TODO что-то с ошибкой порешать
         setEmail(e.target.value)
-        //const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         const re = /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i
-        //TODO email_regular:   /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i
         if (!re.test(String(e.target.value).toLowerCase())) {
             setEmailError('Некорректный адрес электронной почты')
         } else {
@@ -49,12 +46,9 @@ const LoginPage = () => {
     };
 
     const passwordHandler = (e) => {
-
-        //TODO во внутрь поля
         setPassword(e.target.value)
-        if (e.target.value.length < 6) {
-            // TODO валидация пароля
-            setPasswordError('не менее 6 символов')
+        if (e.target.value.length < 8) {
+            setPasswordError('Пароль должен быть не менее 8 символов')
             if (!e.target.value) {
                 setPasswordError('Введите пароль')
             }
@@ -74,9 +68,11 @@ const LoginPage = () => {
             default:
         }
     };
+
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };
+
     return (
         <BackgroundContainer>
             <BackgroundText>YAV</BackgroundText>
@@ -84,41 +80,33 @@ const LoginPage = () => {
                 <Container>
                     <form>
                         <Entry>Вход</Entry>
-
-
-                        {(emailDirty && emailError) && <div>{emailError}</div>}
+                        {(emailDirty && emailError) && <Error style={{marginLeft:"-10%"}}>{emailError}</Error>}
                         <InputBlock
-
                             onChange={e => emailHandler(e)}
                             value={email}
                             onBlur={e => blurHandler(e)}
                             name='email'
                             type="text"
                             placeholder="Почта"
-
                         />
-
-
-
                         <div>
-                            {(passwordDirty && passwordError) && <div>{passwordError}</div>}
-                            <InputBlock
-
-                                onChange={passwordHandler}
-                                value={password}
-                                onBlur={blurHandler}
-                                name='password'
-                                type={showPassword ? 'text' : 'password'}
-                                placeholder="Пароль"
-                            />
-                            <EyeIcon onClick={togglePasswordVisibility}>
-                                {showPassword ? <FaEyeSlash /> : <FaEye />}
-                            </EyeIcon>
-
+                            {(passwordDirty && passwordError) && <Error style={{marginLeft:"-9%"}}>{passwordError}</Error>}
+                            <InputContainer>
+                                <InputField
+                                    onChange={passwordHandler}
+                                    value={password}
+                                    onBlur={blurHandler}
+                                    name='password'
+                                    type={showPassword ? 'text' : 'password'}
+                                    placeholder="Пароль"
+                                />
+                                <EyeIcon onClick={togglePasswordVisibility}>
+                                    {showPassword ? <FaEyeSlash /> : <FaEye />}
+                                </EyeIcon>
+                            </InputContainer>
                         </div>
-
                         <EntryButton className="button" disabled={!formValid} type="submit"> Войти</EntryButton>
-                        <QuestionBlock className="questoin">Нет аккаунта?<RegLink href="/registerPage">Зарегистрироваться</RegLink></QuestionBlock>
+                        <QuestionBlock className="question">Нет аккаунта? <RegLink href="/registerPage">Зарегистрироваться</RegLink></QuestionBlock>
                     </form>
                 </Container>
             </Content>
