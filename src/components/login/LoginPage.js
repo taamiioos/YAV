@@ -1,6 +1,19 @@
 import {useState} from "react";
 import {useEffect} from "react";
-import {BackgroundContainer, BackgroundText, Content, Entry} from "./loginPageStyles";
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import {
+    BackgroundContainer,
+    BackgroundText,
+    Content,
+    Entry,
+    Container,
+    InputBlock,
+    EntryButton,
+    QuestionBlock,
+    RegLink,
+    EyeIcon
+} from "./loginPageStyles";
+import {Link} from "react-router-dom";
 
 
 const LoginPage = () => {
@@ -8,9 +21,10 @@ const LoginPage = () => {
     const [password, setPassword] = useState('');
     const [emailDirty, setEmailDirty] = useState(false);
     const [passwordDirty, setPasswordDirty] = useState(false);
-    const [emailError, setEmailError] = useState('Поле не может быть пустым');
-    const [passwordError, setPasswordError] = useState('Поле не может быть пустым');
+    const [emailError, setEmailError] = useState('Введите электронную почту');
+    const [passwordError, setPasswordError] = useState('Введите пароль');
     const [formValid, setFormValid] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
 
     useEffect(() => {
         if (emailError || passwordError) {
@@ -21,8 +35,12 @@ const LoginPage = () => {
     }, [emailError, passwordError]);
 
     const emailHandler = (e) => {
+
+        //TODO что-то с ошибкой порешать
         setEmail(e.target.value)
-        const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        //const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        const re = /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i
+        //TODO email_regular:   /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i
         if (!re.test(String(e.target.value).toLowerCase())) {
             setEmailError('Некорректный адрес электронной почты')
         } else {
@@ -31,11 +49,14 @@ const LoginPage = () => {
     };
 
     const passwordHandler = (e) => {
+
+        //TODO во внутрь поля
         setPassword(e.target.value)
         if (e.target.value.length < 6) {
-            setPasswordError('Некорректный пароль')
+            // TODO валидация пароля
+            setPasswordError('не менее 6 символов')
             if (!e.target.value) {
-                setPasswordError('Поле не может быть пустым')
+                setPasswordError('Введите пароль')
             }
         } else {
             setPasswordError("")
@@ -53,37 +74,53 @@ const LoginPage = () => {
             default:
         }
     };
-
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
     return (
         <BackgroundContainer>
             <BackgroundText>YAV</BackgroundText>
             <Content>
-                <form>
-                    <Entry>Вход</Entry>
+                <Container>
+                    <form>
+                        <Entry>Вход</Entry>
 
-                    {(emailDirty && emailError) && <div>{emailError}</div>}
-                    <input
-                        onChange={e => emailHandler(e)}
-                        value={email}
-                        onBlur={e => blurHandler(e)}
-                        name='email'
-                        type="text"
-                        placeholder="Почта"
-                    />
 
-                    {(passwordDirty && passwordError) && <div>{passwordError}</div>}
-                    <input
-                        onChange={e => passwordHandler(e)}
-                        value={password}
-                        onBlur={e => blurHandler(e)}
-                        name='password'
-                        type="password"
-                        placeholder="Пароль"
-                    />
+                        {(emailDirty && emailError) && <div>{emailError}</div>}
+                        <InputBlock
 
-                    <button className="button" disabled={!formValid} type="submit"> Войти</button>
-                    <div className="questoin">Нет аккаунта?<a href="/register">Зарегистрироваться</a></div>
-                </form>
+                            onChange={e => emailHandler(e)}
+                            value={email}
+                            onBlur={e => blurHandler(e)}
+                            name='email'
+                            type="text"
+                            placeholder="Почта"
+
+                        />
+
+
+
+                        <div>
+                            {(passwordDirty && passwordError) && <div>{passwordError}</div>}
+                            <InputBlock
+
+                                onChange={passwordHandler}
+                                value={password}
+                                onBlur={blurHandler}
+                                name='password'
+                                type={showPassword ? 'text' : 'password'}
+                                placeholder="Пароль"
+                            />
+                            <EyeIcon onClick={togglePasswordVisibility}>
+                                {showPassword ? <FaEyeSlash /> : <FaEye />}
+                            </EyeIcon>
+
+                        </div>
+
+                        <EntryButton className="button" disabled={!formValid} type="submit"> Войти</EntryButton>
+                        <QuestionBlock className="questoin">Нет аккаунта?<RegLink href="/registerPage">Зарегистрироваться</RegLink></QuestionBlock>
+                    </form>
+                </Container>
             </Content>
         </BackgroundContainer>
     );
