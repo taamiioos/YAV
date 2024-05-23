@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import ClusterSelector from "./ClusterSelector";
-import {
-  BackgroundContainer,
-  BackgroundText
-} from "./RegisterPageStyles";
+import {BackgroundContainer, BackgroundText} from "../login/loginPageStyles";
+// import {
+//   BackgroundContainer,
+//   BackgroundText
+// } from "./RegisterPageStyles";
 
 
 const RegisterPage = () => {
@@ -117,7 +118,7 @@ const RegisterPage = () => {
             </div>
 
             <button className="button" disabled = {!formValid} type="submit"> Зарегистрироваться </button>
-            <div className="questoin">Уже есть аккаунт?<a href="/login">Войти</a></div>
+            <div className="questoin">Уже есть аккаунт?<a href="/">Войти</a></div>
           </form>
         </BackgroundContainer>
       </div>

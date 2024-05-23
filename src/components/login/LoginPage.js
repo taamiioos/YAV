@@ -118,7 +118,7 @@ const LoginPage = () => {
                         </div>
 
                         <EntryButton className="button" disabled={!formValid} type="submit"> Войти</EntryButton>
-                        <QuestionBlock className="questoin">Нет аккаунта?<RegLink href="/register">Зарегистрироваться</RegLink></QuestionBlock>
+                        <QuestionBlock className="questoin">Нет аккаунта?<RegLink href="/registerPage">Зарегистрироваться</RegLink></QuestionBlock>
                     </form>
                 </Container>
             </Content>
