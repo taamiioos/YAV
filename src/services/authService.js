@@ -1,13 +1,29 @@
 import axios from 'axios';
 
-
-
+const register = async (username, password, name) => {
+    try {
+        const response = await axios.post('/api/auth/register', {
+            username,
+            password,
+            name,
+        });
+        if (response.data.status === true) {
+            console.log('User registered successfully');
+        } else {
+            console.log('User registration failed');
+        }
+    } catch (error) {
+        console.log('User registration failed');
+    }
+};
 
 export function useAuth() {
-    const dispatch = useDispatch();
     const register = async (email, nickname, password) => {
         try {
-            const response = await axios.post('/api/register', { email, nickname, password });
+            const response = await axios.post('/api/register', {
+                username,
+                password,
+                name, });
             if (response.data.status === true) {
                 history.push('/cluster-page');
             } else {
@@ -18,20 +34,20 @@ export function useAuth() {
         }
     };
 
-    const login = async (email, password) => {
-        try {
-            const response = await axios.post('/api/auth', { username: email, password: password });
-            if (response.data.status === true) {
-            } else {
-
-            }
-        } catch (error) {
-            console.error('Ошибка:', error);
-        }
-    };
-
-    return {
-        register,
-        login,
-    };
+//     const login = async (email, password) => {
+//         try {
+//             const response = await axios.post('/api/auth', { username: email, password: password });
+//             if (response.data.status === true) {
+//             } else {
+//
+//             }
+//         } catch (error) {
+//             console.error('Ошибка:', error);
+//         }
+//     };
+//
+//     return {
+//         register,
+//         login,
+//     };
 }
