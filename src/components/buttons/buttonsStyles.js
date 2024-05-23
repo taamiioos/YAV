@@ -5,10 +5,11 @@ export const ButtonStyled = styled('button')`
   background-color: #E1DBC5;
   color: #202020;
   border: none;
+  font-family: 'Helvetica',serif;
   border-radius: 8px;
-  font-size: 17px;
-  font-family: Inter, serif;
-  font-weight: bold;
+  font-size: 1rem;
+  
+ font-weight: bold;
   padding: 3px 10px;
   cursor: pointer;
   transition: background-color 0.3s ease;
