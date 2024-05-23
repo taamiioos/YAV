@@ -1,24 +1,29 @@
 import { useState } from "react";
 import { useEffect } from "react";
+import ClusterSelector from "./ClusterSelector";
+import {
+  BackgroundContainer,
+  BackgroundText
+} from "./RegisterPageStyles";
 
 
-const RegisterPage = () => {  
+const RegisterPage = () => {
   const [email, setEmail] = useState('');
   const [nickname, setNickname] = useState('');
   const [password, setPassword] = useState('');
   const [emailDirty, setEmailDirty] = useState(false);
   const [nicknameDirty, setNicknameDirty] = useState(false);
-  const [passwordDirty, setPasswordDirty] = useState(false); 
+  const [passwordDirty, setPasswordDirty] = useState(false);
   const [emailError, setEmailError] = useState('Поле не может быть пустым');
   const [nicknameError, setNicknameError] = useState('Поле не может быть пустым');
   const [passwordError, setPasswordError] = useState('Поле не может быть пустым');
   const [formValid, setFormValid] = useState(false);
-  
+
   useEffect (() => {
     if (emailError || nicknameError || passwordError ) {
       setFormValid(false)
     } else {
-        setFormValid(true)
+      setFormValid(true)
     }
   }, [emailError, nicknameError, passwordError]);
 
@@ -64,51 +69,60 @@ const RegisterPage = () => {
       case 'password':
         setPasswordDirty(true)
         break
-        default:
+      default:
     }
   };
 
-  return ( 
-    <div className="register">
-      <form>
-        <h1>Регистрация</h1>
+  return (
+      <div className="register">
+        <BackgroundContainer>
+          <BackgroundText>YAV</BackgroundText>
+          <form>
+            <h1>Регистрация</h1>
 
-        {(emailDirty && emailError) && <div>{emailError}</div>}
-	      <input 
-          onChange={e => emailHandler(e)} 
-          value={email} 
-          onBlur={e => blurHandler(e)} 
-          name='email' 
-          type="text" 
-          placeholder="Почта"
-        />
+            {(emailDirty && emailError) && <div>{emailError}</div>}
+            <input
+                onChange={e => emailHandler(e)}
+                value={email}
+                onBlur={e => blurHandler(e)}
+                name='email'
+                type="text"
+                placeholder="Почта"
+            />
 
-        {(nicknameDirty && nicknameError) && <div>{nicknameError}</div>}
-	      <input 
-          onChange={e => nicknameHandler(e)}
-          value={nickname} 
-          onBlur={e => blurHandler(e)} 
-          name='nickname' 
-          type="text" 
-          placeholder="Логин"
-        />
+            {(nicknameDirty && nicknameError) && <div>{nicknameError}</div>}
+            <input
+                onChange={e => nicknameHandler(e)}
+                value={nickname}
+                onBlur={e => blurHandler(e)}
+                name='nickname'
+                type="text"
+                placeholder="Логин"
+            />
 
-	      {(passwordDirty && passwordError) && <div>{passwordError}</div>}
-	      <input 
-          onChange={e => passwordHandler(e)} 
-          value={password} 
-          onBlur={e => blurHandler(e)} 
-          name='password' 
-          type="password" 
-          placeholder="Пароль"
-        />
-        
-        <div>КЛАСТЕРЫ... я пока не ебу, как их запихнуть, девочки</div>
-        <button className="button" disabled = {!formValid} type="submit"> Зарегистрироваться </button>
-        <div className="questoin">Уже есть аккаунт?<a href="/login">Войти</a></div>
-      </form>
-    </div>
+            {(passwordDirty && passwordError) && <div>{passwordError}</div>}
+            <input
+                onChange={e => passwordHandler(e)}
+                value={password}
+                onBlur={e => blurHandler(e)}
+                name='password'
+                type="password"
+                placeholder="Пароль"
+            />
+
+
+            <div className="App">
+              <ClusterSelector />
+
+            </div>
+
+            <button className="button" disabled = {!formValid} type="submit"> Зарегистрироваться </button>
+            <div className="questoin">Уже есть аккаунт?<a href="/login">Войти</a></div>
+          </form>
+        </BackgroundContainer>
+      </div>
   );
 }
- 
+//TODO кластеры (чекбоксы в контейнере)
+
 export default RegisterPage;
