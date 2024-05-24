@@ -58,6 +58,22 @@ z-index: 2;
   margin-top: -60%;
   
 `
+export const InputContainer = styled('div')`
+  position: relative;
+`;
+
+export const InputField = styled('input')`
+  width: 90%;
+  max-width: 540px; 
+  height: 50px;
+  border: 1px solid grey;
+  border-radius: 8px;
+  padding-left: 3%;
+  box-sizing: border-box;
+  margin-left: 0;
+  margin-bottom: 10px;
+`;
+
 export const InputBlock = styled('input')`
 
   width: 90%;
@@ -109,13 +125,11 @@ color: #A80B00;
 `
 export const EyeIcon = styled('div')`
   position: absolute;
-  //right: 15px;
-  top: 50%;
+  right: 21%;
+  top: 45%;
   transform: translateY(-50%);
   cursor: pointer;
 `
 
 
 export { globalStyles };
-
-//git git config

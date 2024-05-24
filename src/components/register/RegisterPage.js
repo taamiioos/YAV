@@ -1,6 +1,22 @@
 import React, { useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
+import { EntryButton, RegLink } from "../login/loginPageStyles";
+import {
+  BackgroundContainer,
+  BackgroundText,
+  BackgroundBlock,
+  ClusterBlock,
+  Eye,
+  InputContainer,
+  InputBlock,
+  RegBlock,
+  Registration,
+  QuestionBlock,
+  FooterBlock, Error
+} from "./RegisterPageStyles";
+import { fontFamily } from "@mui/system";
+
 const RegisterPage = () => {
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
@@ -37,7 +53,7 @@ const RegisterPage = () => {
   const handlePasswordChange = (e) => {
     const value = e.target.value;
     setPassword(value);
-    setPasswordError(value.length >= 6 ? '' : 'Пароль должен быть не менее 6 символов');
+    setPasswordError(value.length >= 8 ? '' : 'Пароль должен быть не менее 8 символов');
   };
 
   const togglePasswordVisibility = () => {
@@ -70,94 +86,85 @@ const RegisterPage = () => {
   };
 
   return (
-      <div style={{ textAlign: 'center', marginTop: '50px' }}>
-        <h1>РЕГИСТРАЦИЯ</h1>
-        <form onSubmit={handleSubmit}>
-          <div style={{ marginBottom: '20px' }}>
-            <input
-                type="text"
-                placeholder="Почта"
-                value={email}
-                onChange={handleEmailChange}
-                style={{ width: '300px', padding: '10px' }}
-            />
-            {emailError && <div style={{ color: 'red' }}>{emailError}</div>}
-          </div>
-          <div style={{ marginBottom: '20px' }}>
-            <input
-                type="text"
-                placeholder="Имя пользователя"
-                value={username}
-                onChange={handleUsernameChange}
-                style={{ width: '300px', padding: '10px' }}
-            />
-            {usernameError && <div style={{ color: 'red' }}>{usernameError}</div>}
-          </div>
-          <div style={{ marginBottom: '20px', position: 'relative', display: 'inline-block' }}>
-            <input
-                type={showPassword ? 'text' : 'password'}
-                placeholder="Пароль"
-                value={password}
-                onChange={handlePasswordChange}
-                style={{ width: '300px', padding: '10px' }}
-            />
-            <span
-                onClick={togglePasswordVisibility}
-                style={{
-                  position: 'absolute',
-                  right: '10px',
-                  top: '50%',
-                  transform: 'translateY(-50%)',
-                  cursor: 'pointer'
-                }}
-            >
-            {showPassword ? <FaEyeSlash /> : <FaEye />}
-          </span>
-            {passwordError && <div style={{ color: 'red' }}>{passwordError}</div>}
-          </div>
-          <div>
-            <h3>КЛАСТЕРЫ</h3>
-            <p>Сообщества творцов, в которых они делятся своими работами, общаются, а также совместно участвуют в челленджах. Вы можете выбрать до 3 кластеров.</p>
-            <div>
-              {availableClusters.map((cluster) => (
-                  <button
-                      type="button"
-                      key={cluster}
-                      onClick={() => handleClusterClick(cluster)}
-                      style={{
-                        margin: '5px',
-                        padding: '10px 15px',
-                        backgroundColor: clusters.includes(cluster) ? 'red' : '#e0e0e0',
-                        border: 'none',
-                        borderRadius: '5px',
-                        cursor: 'pointer'
-                      }}
-                  >
-                    {cluster}
-                  </button>
-              ))}
-            </div>
-          </div>
-          <div style={{ marginTop: '20px' }}>
-            <button
-                type="submit"
-                style={{
-                  padding: '10px 20px',
-                  backgroundColor: 'red',
-                  color: 'white',
-                  border: 'none',
-                  borderRadius: '5px',
-                  cursor: 'pointer'
-                }}
-            >
-              Зарегистрироваться
-            </button>
-          </div>
-        </form>
-        <div style={{ marginTop: '20px' }}>
-          Уже есть аккаунт? <a href="#">Войти</a>
-        </div>
-      </div>
+      <BackgroundBlock>
+        <BackgroundContainer>
+          <BackgroundText>YAV</BackgroundText>
+
+          <RegBlock>
+            <Registration>РЕГИСТРАЦИЯ</Registration>
+            <form onSubmit={handleSubmit}>
+              <div>
+                <InputContainer>
+                  <InputBlock
+                      type="text"
+                      placeholder="Почта"
+                      value={email}
+                      onChange={handleEmailChange}
+                  />
+                  {emailError && <Error style={{ marginLeft: "-7.5%"}}>{emailError}</Error>}
+                </InputContainer>
+              </div>
+              <div>
+                <InputContainer>
+                  <InputBlock
+                      type="text"
+                      placeholder="Имя пользователя"
+                      value={username}
+                      onChange={handleUsernameChange}
+                  />
+                  {usernameError && <Error>{usernameError}</Error>}
+                </InputContainer>
+              </div>
+              <div>
+                <InputContainer>
+                  <InputBlock
+                      type={showPassword ? 'text' : 'password'}
+                      placeholder="Пароль"
+                      value={password}
+                      onChange={handlePasswordChange}
+                  />
+                  <Eye onClick={togglePasswordVisibility}>
+                    {showPassword ? <FaEyeSlash /> : <FaEye />}
+                  </Eye>
+                  {passwordError && <Error style={{ color: '#A80B00', position:"absolute", marginLeft:"25%", marginTop:"1%", fontFamily:"Helvetica", fontWeight:"bold" }}>{passwordError}</Error>}
+                </InputContainer>
+              </div>
+              <ClusterBlock>
+                <p style={{ fontFamily: 'South', fontSize: "3rem", marginTop:"7%", fontWeight: "40" }}>КЛАСТЕРЫ</p>
+                <p style={{marginTop:"-5%"}}>Сообщества творцов, в которых они делятся своими работами, общаются, а также совместно участвуют в челленджах. <br /> Вы можете выбрать до 3 кластеров.</p>
+                <div>
+                  {availableClusters.map((cluster) => (
+                      <button
+                          type="button"
+                          key={cluster}
+                          onClick={() => handleClusterClick(cluster)}
+                          style={{
+                            margin: '5px',
+                            padding: '10px 15px',
+                            backgroundColor: clusters.includes(cluster) ? '#A80B00 ' : '#E1DBC5',
+                            border: 'none',
+                            borderRadius: '5px',
+                            cursor: 'pointer'
+                          }}
+                      >
+                        {cluster}
+                      </button>
+                  ))}
+                </div>
+              </ClusterBlock>
+              <div style={{ marginTop: '20px' }}>
+                <EntryButton type="submit">
+                  Зарегистрироваться
+                </EntryButton>
+              </div>
+            </form>
+            <QuestionBlock>
+              Уже есть аккаунт? <RegLink href="/">Войти</RegLink>
+            </QuestionBlock>
+          </RegBlock>
+        </BackgroundContainer>
+        <FooterBlock />
+      </BackgroundBlock>
   );
 };
 
