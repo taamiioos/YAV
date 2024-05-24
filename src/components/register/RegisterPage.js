@@ -3,7 +3,7 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
 import { register } from '../../redux/actions/authActions';
 
-import {Container, Entry, EntryButton, RegLink} from "../login/loginPageStyles";
+import { EntryButton, RegLink} from "../login/loginPageStyles";
 import {
   BackgroundContainer,
   BackgroundText,
@@ -13,10 +13,8 @@ import {
   InputBlock,
   RegBlock,
   Registration,
-  ButtonStyled,
   QuestionBlock, FooterBlock
 } from "./RegisterPageStyles";
-import {fontFamily} from "@mui/system";
 
 const RegisterPage = () => {
   const [email, setEmail] = useState('');
@@ -27,7 +25,6 @@ const RegisterPage = () => {
   const [emailError, setEmailError] = useState('');
   const [usernameError, setUsernameError] = useState('');
   const [passwordError, setPasswordError] = useState('');
-  const dispatch = useDispatch();
 
   const availableClusters = [
     'Кино', 'Театр', 'Музыка', 'Фотография', 'Арт',
@@ -73,10 +70,16 @@ const RegisterPage = () => {
     });
   };
 
+  const dispatch = useDispatch();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!emailError && !usernameError && !passwordError && email && username && password) {
-      dispatch(register(username, password, email));
+      dispatch(register({
+        username: email,
+        name: username,
+        password: password,
+      }));
     } else {
       console.error('Пожалуйста, заполните все поля корректно.');
     }

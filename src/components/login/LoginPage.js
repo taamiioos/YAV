@@ -13,7 +13,8 @@ import {
     RegLink,
     EyeIcon
 } from "./loginPageStyles";
-import {Link} from "react-router-dom";
+import {login} from '../../redux/actions/authActions';
+import {useDispatch} from "react-redux";
 
 
 const LoginPage = () => {
@@ -62,7 +63,14 @@ const LoginPage = () => {
             setPasswordError("")
         }
     };
-
+    const dispatch = useDispatch();
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        dispatch(login({
+            username: email,
+            password: password,
+        }));
+    };
     const blurHandler = (e) => {
         switch (e.target.name) {
             case 'email':
@@ -82,9 +90,8 @@ const LoginPage = () => {
             <BackgroundText>YAV</BackgroundText>
             <Content>
                 <Container>
-                    <form>
+                    <form onSubmit={handleSubmit}>
                         <Entry>Вход</Entry>
-
 
                         {(emailDirty && emailError) && <div>{emailError}</div>}
                         <InputBlock
