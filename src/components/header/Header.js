@@ -25,7 +25,7 @@ const Header = () => {
                   <HeaderNavLink to="/">Магазин</HeaderNavLink>
                 </HeaderNavListItem>
                 <HeaderNavListItem>
-                  <HeaderNavLink to="/">Кластеры</HeaderNavLink>
+                  <HeaderNavLink to="/сlusterPage">Кластеры</HeaderNavLink>
                 </HeaderNavListItem>
                 <HeaderNavListItem>
                   <HeaderNavLinkExternal href="#!">Мой аккаунт</HeaderNavLinkExternal>

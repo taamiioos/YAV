@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-
-import { EntryButton, RegLink } from "../login/loginPageStyles";
+import { useDispatch } from 'react-redux';
+import { register } from '../../redux/actions/authActions';
+import { EntryButton, RegLink} from "../login/loginPageStyles";
 import {
   BackgroundContainer,
   BackgroundText,
@@ -12,10 +13,8 @@ import {
   InputBlock,
   RegBlock,
   Registration,
-  QuestionBlock,
-  FooterBlock, Error
+  Error, QuestionBlock, FooterBlock
 } from "./RegisterPageStyles";
-import { fontFamily } from "@mui/system";
 
 const RegisterPage = () => {
   const [email, setEmail] = useState('');
@@ -71,15 +70,16 @@ const RegisterPage = () => {
     });
   };
 
+  const dispatch = useDispatch();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!emailError && !usernameError && !passwordError && email && username && password) {
-      console.log({
-        email,
-        username,
-        password,
-        clusters,
-      });
+      dispatch(register({
+        username: email,
+        name: username,
+        password: password,
+      }));
     } else {
       console.error('Пожалуйста, заполните все поля корректно.');
     }

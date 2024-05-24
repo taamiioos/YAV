@@ -13,10 +13,11 @@ import {
     RegLink,
     EyeIcon, InputContainer, InputField
 } from "./loginPageStyles";
-import { Link } from "react-router-dom";
-import { styled } from '@mui/system';
-import {Error} from "../register/RegisterPageStyles";
 
+import {login} from '../../redux/actions/authActions';
+import {useDispatch} from "react-redux";
+
+import {Error} from "../register/RegisterPageStyles";
 const LoginPage = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -56,7 +57,14 @@ const LoginPage = () => {
             setPasswordError("")
         }
     };
-
+    const dispatch = useDispatch();
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        dispatch(login({
+            username: email,
+            password: password,
+        }));
+    };
     const blurHandler = (e) => {
         switch (e.target.name) {
             case 'email':
@@ -68,17 +76,15 @@ const LoginPage = () => {
             default:
         }
     };
-
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };
-
     return (
         <BackgroundContainer>
             <BackgroundText>YAV</BackgroundText>
             <Content>
                 <Container>
-                    <form>
+                    <form onSubmit={handleSubmit}>
                         <Entry>Вход</Entry>
                         {(emailDirty && emailError) && <Error style={{marginLeft:"-10%"}}>{emailError}</Error>}
                         <InputBlock

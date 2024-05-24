@@ -5,9 +5,9 @@ import Modal from 'react-modal';
 
 export const Container = styled('div')`
   margin-top: 2%;
-  width: 65%;
+  width: 68%;
   max-height: 2390px;
-  height: 100vh;
+  height: 80vh;
   overflow-y: auto;
   display: flex;
   flex-direction: column;

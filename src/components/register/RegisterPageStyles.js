@@ -1,5 +1,4 @@
 import { styled } from '@mui/system';
-import { globalStyles } from '../../styles/exportStyles';
 
 export const BackgroundContainer = styled('div')`
   position: relative;
