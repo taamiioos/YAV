@@ -7,17 +7,20 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import LoginPage from "./components/login/LoginPage";
 import RegisterPage from "./components/register/RegisterPage";
+import AccountPage from "./components/accountPage/AccountPage";
 function App() {
     return (
 
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<ClusterPage />} />
+                <Route path="/" element={<LoginPage />} />
+                <Route path="/сlusterPage" element={<ClusterPage />} />
+                <Route path="/registerPage" element={<RegisterPage />} />
+                <Route path="/clusterPage" element={<ClusterPage />} />
                 <Route path="/eventsPage" element={<Events />} />
                 <Route path="/ticketPage" element={<BuyTicketPage />} />
                 <Route path="/eventPage" element={<EventPage />} />
-                <Route path="/loginPage" element={<LoginPage />} />
-                <Route path="/registerPage" element={<RegisterPage />} />
+                <Route path="/accountPage" element={<AccountPage />} />
             </Routes>
         </BrowserRouter>
 
