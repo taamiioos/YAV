@@ -64,10 +64,7 @@ export const EventTicketsContainer = styled('div')`
   width: 20%;
 `;
 
-export const TicketsButton = styled('button')`
-  background: var(--white-03);
-  border-radius: 10px;
-  border: none;
+export const TicketsButton = styled('div')`
   width: 100%;
   padding:6%;
   margin-top: 45%;
@@ -85,6 +82,10 @@ export const TicketsLeftContainer = styled('div')`
 `;
 
 export const NavLink = styled(Link)`
+  border-radius: 10px;
+  border: none;
+  padding:6%;
+  margin-top: 45%;
   font-family: 'Helvetica', serif;
   font-style: italic;
   font-weight: 850;
@@ -92,15 +93,18 @@ export const NavLink = styled(Link)`
   color: var(--red-03);
   line-height: 148.6%;
   text-decoration: none;
-  border: none;
   background-color: #FDFDFD;
 
   &:hover {
-    color: #A80B00;
+    color: #ffffff;
+    background-color: #9b0000;
+
   }
 
   &.selected {
-    color: #A80B00;
+    color: #ffffff;
+    background-color: #9b0000;
+
   }
 
 ` ;

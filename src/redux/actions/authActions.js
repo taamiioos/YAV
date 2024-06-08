@@ -1,15 +1,15 @@
 import axios from 'axios';
-
-export const REGISTER_START = 'REGISTER_START';
-export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
-export const REGISTER_FAILURE = 'REGISTER_FAILURE';
+import {LOGIN_FAILURE, LOGIN_REQUEST, REGISTER_FAILURE, REGISTER_START} from "./types";
+import {REGISTER_URL,LOGIN_URL} from "../../apiConfig";
 
 export const register = (userData) => async (dispatch) => {
     dispatch({ type: REGISTER_START });
     try {
-        const response = await axios.post('http://127.0.0.1:8000/api/register', userData);
+        const response = await axios.post(`${REGISTER_URL}`, userData);
         if (response.data.status) {
             console.log('Регистрация прошла успешно!');
+            localStorage.setItem('token', response.data.token);
+            console.log('Токен:', response.data.token);
             window.location.href = "/clusterPage";
 
         } else {
@@ -18,18 +18,19 @@ export const register = (userData) => async (dispatch) => {
     } catch (error) {
         console.error('Ошибка:', error);
         console.log('Произошла ошибка при регистрации. Попробуйте снова.');
+        dispatch({ type: REGISTER_FAILURE, error: error.message });
     }
 };
-export const LOGIN_REQUEST = 'LOGIN_REQUEST';
-export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
-export const LOGIN_FAILURE = 'LOGIN_FAILURE';
+
 
 export const login = (userData) => async (dispatch) => {
     dispatch({ type: LOGIN_REQUEST });
     try {
-        const response = await axios.post('http://127.0.0.1:8000/api/auth', userData);
+        const response = await axios.post(`${LOGIN_URL}`, userData);
         if (response.data.status) {
             console.log('успешно');
+            localStorage.setItem('token', response.data.token);
+            console.log('Токен:', response.data.token);
             window.location.href = "/clusterPage";
         } else {
             console.log(response.data.error);
@@ -37,6 +38,6 @@ export const login = (userData) => async (dispatch) => {
     } catch (error) {
         console.error('Ошибка:', error);
         console.log('Произошла ошибка при входе');
+        dispatch({ type: LOGIN_FAILURE, error: error.message });
     }
 };
-

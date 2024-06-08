@@ -18,7 +18,6 @@ const Events = () => {
             <Header/>
             <NameEvent>МЕРОПРИЯТИЯ</NameEvent>
             <EventListContainer>
-
                 <EventContainer>
                     <Image src={event_picture} alt="event_picture" style={{width: '30%'}}/>
                     <EventDescriptionContainer>

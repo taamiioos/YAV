@@ -49,7 +49,7 @@ export const Info = styled("p")`
   font-family: 'Helvetica', serif;
   font-size: 1.3rem;
   font-weight: 400;
-  line-height: 1.28rem;
+  line-height: 1rem;
   text-align: left;
   color: #202020;
 
@@ -62,7 +62,7 @@ export const NameEvent = styled('h1')`
   line-height: 1.1;
   text-align: left;
   color: #A80B00;
-  margin: 0 0 0 10%;
+  margin: 5% 0 0 8%;
   padding: 0;
   align-self: flex-start;
 `;
