@@ -1,6 +1,9 @@
 import { styled } from '@mui/system';
 import { globalStyles } from '../../styles/exportStyles';
 
+const primaryFont = "'Helvetica', serif";
+const primaryColor = "#202020";
+
 export const Container = styled('div')`
   margin-top: 10%;
   margin-left: auto;
@@ -8,7 +11,7 @@ export const Container = styled('div')`
   background-color: #FDFDFD;
   width: 98%;
   border-radius: 20px 20px 0 0;
-  font-family: 'Helvetica', serif;
+  font-family: ${primaryFont};
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -16,11 +19,11 @@ export const Container = styled('div')`
 `;
 export const ClusterName = styled('h2')`
   font-family: 'South', serif;
-  font-size: 8rem; 
+  font-size: 8rem;
   font-weight: 400;
   line-height: 1.1;
   text-align: left;
-  color: #202020;
+  color: ${primaryColor};
   margin: 5% 0 0 7%;
   padding: 0;
   align-self: flex-start;
@@ -36,14 +39,14 @@ export const OutCluster = styled('button')`
   line-height: 26.04px;
   text-align: center;
   background-color: #FDFDFD;
-  color: #202020;
+  color: ${primaryColor};
   border-radius: 5px;
   cursor: pointer;
   padding: 15px 25px;
   transition: background-color 0.3s ease;
   align-self: flex-end;
   position: absolute;
-  border-color: #202020;
+  border-color: ${primaryColor};
   margin-top: 7%;
   margin-right: 5%;
 
@@ -56,22 +59,20 @@ export const OutCluster = styled('button')`
     background-color: #A80B00;
     color: #FDFDFD;
   }
-
-` ;
-export const Participants = styled('span')`
+`;
+export const Participants = styled('p')`
   align-self: flex-end;
   position: absolute;
   margin-right: 20%;
   margin-top: 8%;
   width: 15%;
   height: 3%;
-  font-family: 'Helvetica', sans-serif;
+  font-family: ${primaryFont};
   font-size: 16px;
   font-weight: 400;
   line-height: 20.48px;
   text-align: right;
-  color: #202020;
-  
+  color: ${primaryColor};
 `;
 
 export { globalStyles };

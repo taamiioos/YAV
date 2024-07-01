@@ -2,6 +2,9 @@ import { styled } from '@mui/system';
 import {Link} from "react-router-dom";
 import { globalStyles } from '../../styles/exportStyles';
 
+const primaryFont = "'Inter', sans-serif";
+const primaryColor = "var(--red-03)";
+
 export const HeaderWrapper = styled("header")`
   width: 100%;
   height: 20%;
@@ -21,19 +24,17 @@ export const HeaderRow = styled('div')`
   justify-content: space-between;
 `;
 
-export const Logo = styled('div')`
+export const Logo = styled('h1')`
   display: flex;
   align-items: center;
   margin-top: 0.5%;
-  font-family: Inter, sans-serif;
+  font-family: ${primaryFont};
   font-weight: 900;
   font-size: 4rem;
   line-height: 4.859375vw;
   letter-spacing: -0.15em;
-  color: var(--red-03);
+  color: ${primaryColor};
 `;
-
-
 
 export const HeaderNavList = styled('ul')`
   display: flex;
@@ -41,7 +42,6 @@ export const HeaderNavList = styled('ul')`
   align-items: center;
   list-style-type: none;
   margin-top: 2.734375%;
-  
 `;
 
 export const HeaderNavListItem = styled('li')`
@@ -55,14 +55,8 @@ export const HeaderNavLink = styled(Link)`
   line-height: 148.6%;
   color: var(--black-03);
   text-decoration: none;
-  &:hover {
-    color: #9b0000;
-  }
-
-  &.selected {
-    color: #9b0000;
-  }
+  &:hover {color: #9b0000;}
+  &.selected {color: #9b0000;}
 `;
-
 
 export { globalStyles };

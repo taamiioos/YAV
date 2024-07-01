@@ -7,7 +7,6 @@ import { addPublication, loadPublications } from "../../redux/actions/publicatio
 const AddPublicationBlock = ({ closeModal }) => {
     const [text, setText] = useState('');
     const dispatch = useDispatch();
-
     const handleTextChange = (event) => {
         setText(event.target.value);
     };

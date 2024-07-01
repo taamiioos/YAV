@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from 'react';
 import {
   Container,
   HeaderNavLink,
@@ -10,51 +9,35 @@ import {
 } from "./headerStyles";
 import { useLocation } from 'react-router-dom';
 
+const navLinks = [
+  {path: '/eventsPage', label: 'Мероприятия'},
+  {path: '/', label: 'Магазин'},
+  {path: '/clusterPage', label: 'Кластеры'},
+  {path: '#!', label: 'Мой аккаунт'}
+];
+
 const Header = () => {
-  const [activeLink, setActiveLink] = useState('');
   const location = useLocation();
 
-  useEffect(() => {
-    setActiveLink(location.pathname);
-  }, [location.pathname]);
+  const isActive = (path) => {
+    return location.pathname === path ? 'selected' : '';
+  }
 
   return (
       <HeaderWrapper>
         <Container>
-          <HeaderRow><Logo>YAV</Logo>
+          <HeaderRow>
+            <Logo>YAV</Logo>
             <HeaderNavList>
-              <HeaderNavListItem>
-                <HeaderNavLink
-                    to="/eventsPage"
-                    className={activeLink === '/eventsPage' ? 'selected' : ''}
-                >
-                  Мероприятия
-                </HeaderNavLink>
-              </HeaderNavListItem>
-              <HeaderNavListItem>
-                <HeaderNavLink
-                    to="/"
-                    className={activeLink === '/' ? 'selected' : ''}
-                >
-                  Магазин
-                </HeaderNavLink>
-              </HeaderNavListItem>
-              <HeaderNavListItem>
-                <HeaderNavLink
-                    to="/сlusterPage"
-                    className={activeLink === '/сlusterPage' ? 'selected' : ''}
-                >
-                  Кластеры
-                </HeaderNavLink>
-              </HeaderNavListItem>
-              <HeaderNavListItem>
-                <HeaderNavLink
-                    href="#!"
-                    className={activeLink === '#!' ? 'selected' : ''}
-                >
-                  Мой аккаунт
-                </HeaderNavLink>
-              </HeaderNavListItem>
+              {navLinks.map((link, index) => (
+                  <HeaderNavListItem key={index}>
+                    <HeaderNavLink
+                        to={link.path}
+                        className={isActive(link.path)}>
+                      {link.label}
+                    </HeaderNavLink>
+                  </HeaderNavListItem>
+              ))}
             </HeaderNavList>
           </HeaderRow>
         </Container>
